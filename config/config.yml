@@ -1,3 +1,3 @@
 # Used for subscription emails (subscription_notifier.rb)
-freshdesk_domain_name: http://halflife25.freshdesk.com/
-freshdesk_sso_decret: 6765d53573a4e4b665d45c85561344d4
+freshdesk_domain_name: http://demo.freshdesk.com/
+freshdesk_sso_decret: df02b88d971c78807a644adeae260919

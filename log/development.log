@@ -1,0 +1,322 @@
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("schema_migrations")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20110612190731)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar(255), "email" varchar(255), "crypted_password" varchar(255), "password_salt" varchar(255), "persistence_token" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20110612190731')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 00:45:05) [GET]
+Rendering user_sessions/new
+
+ActionView::TemplateError (undefined method `title' for #<ActionView::Base:0x103495620>) on line #1 of app/views/user_sessions/new.html.erb:
+1: <% title "Login" %>
+2: 
+3: <% form_for @user_session do |f| %>
+4:   <%= f.error_messages %>
+
+    app/views/user_sessions/new.html.erb:1
+    -e:2:in `load'
+    -e:2
+
+Rendered rescues/_trace (64.0ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 00:46:15) [GET]
+Rendering user_sessions/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2011-06-13 00:46:20) [GET]
+Rendering users/new
+Rendered users/_form (4.6ms)
+Completed in 17ms (View: 10, DB: 0) | 200 OK [http://localhost/users/new]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2011-06-13 00:46:40) [POST]
+  Parameters: {"commit"=>"Submit", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "user"=>{"password_confirmation"=>"1234", "username"=>"kiran", "password"=>"1234", "email"=>"kiran@freshdesk.com"}}
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE (LOWER("users"."email") = 'kiran@freshdesk.com') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE (LOWER("users"."username") = 'kiran') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = '1797bb7a67e9315860d8b7e0ae8b65d4c5fea667c41da2fc80d65b50f4fcb617b92c46f1c20d17f575e12190c64363ec1614ec591c7960f5fa17fc3a5b334594') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Create (0.4ms)[0m   [0;1mINSERT INTO "users" ("created_at", "crypted_password", "updated_at", "username", "password_salt", "persistence_token", "email") VALUES('2011-06-12 19:16:40', 'c0f01742402d8fa8725ab582f978e510564fb9c092762e317bf32e382a3a260dd3ce4e88d2d7a93cadcf124dc2f8701ce7cf73760beb9f5c548fe7f89392ee8d', '2011-06-12 19:16:40', 'kiran', 'aFoZB5SjuHzm4UHHsfO', '1797bb7a67e9315860d8b7e0ae8b65d4c5fea667c41da2fc80d65b50f4fcb617b92c46f1c20d17f575e12190c64363ec1614ec591c7960f5fa17fc3a5b334594', 'kiran@freshdesk.com')[0m
+Redirected to http://localhost:3003/users/1
+Completed in 255ms (DB: 1) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2011-06-13 00:46:40) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering users/show
+Completed in 13ms (View: 5, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 00:47:24) [GET]
+Rendering user_sessions/new
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 00:47:32) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"test"}, "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw="}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+Rendering user_sessions/new
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 00:48:55) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"1234"}, "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw="}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+
+NameError (undefined local variable or method `root_url' for #<UserSessionsController:0x10329f4d8>):
+  app/controllers/user_sessions_controller.rb:10:in `create'
+  -e:2:in `load'
+  -e:2
+
+Rendered rescues/_trace (24.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 00:57:20) [GET]
+Rendering user_sessions/new
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 00:57:29) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"1234"}, "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw="}
+  [4;36;1mUser Load (2.6ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+Redirected to http://localhost:3000
+Completed in 202ms (DB: 3) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:04:20) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 20ms (View: 12, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:04:27) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 01:04:38) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+Redirected to http://localhost:3000
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:11:33) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 19ms (View: 12, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 01:11:48) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=kiran&email=kiran@freshdesk.com&hash=9599b7f97c4c8c2623c88c8566218941
+Completed in 181ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:12:02) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2011-06-13 01:12:09) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering users/new
+Rendered users/_form (5.5ms)
+Completed in 18ms (View: 12, DB: 0) | 200 OK [http://localhost/users/new]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2011-06-13 01:12:33) [POST]
+  Parameters: {"commit"=>"Submit", "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"users", "user"=>{"password_confirmation"=>"[FILTERED]", "username"=>"uknowmewell", "password"=>"[FILTERED]", "email"=>"uknowmewell@gmail.com"}}
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE (LOWER("users"."email") = 'uknowmewell@gmail.com') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE (LOWER("users"."username") = 'uknowmewell') LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = '154e72246b0ba065e3ef350bea512c6af2ae85c6b5b980f3aa91dbdcc7b709d76a59c7ea3a55215d6f9b5b48bb921f05ef5ba766863b2297fbd5046c344f09be') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mUser Create (0.3ms)[0m   [0;1mINSERT INTO "users" ("created_at", "crypted_password", "updated_at", "username", "password_salt", "persistence_token", "email") VALUES('2011-06-12 19:42:33', '613e59c1257091f65a885631b6649329c7b65b116e6391683945202306d66dd31ecb98b11299ce6a3d74d4d40aeae56c41508ca7f2bc1b43f1fafb09ccb0de78', '2011-06-12 19:42:33', 'uknowmewell', '28MktdWxdFkjUnlRNHt', '154e72246b0ba065e3ef350bea512c6af2ae85c6b5b980f3aa91dbdcc7b709d76a59c7ea3a55215d6f9b5b48bb921f05ef5ba766863b2297fbd5046c344f09be', 'uknowmewell@gmail.com')[0m
+Redirected to http://localhost:3003/users/2
+Completed in 17ms (DB: 1) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2011-06-13 01:12:33) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering users/show
+Completed in 14ms (View: 5, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:12:44) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 01:12:53) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"uknowmewell", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'uknowmewell') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=uknowmewell&email=uknowmewell@gmail.com&hash=5b26c9ffbfed9ea89f92e5025b933548
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:12:55) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 12ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 01:13:28) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 20ms (View: 13, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:40:22) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 13ms (View: 6, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:40:34) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=kiran&email=kiran@freshdesk.com&hash=9599b7f97c4c8c2623c88c8566218941
+Completed in 179ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:40:44) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:40:53) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"uknowmewell", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'uknowmewell') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=uknowmewell&email=uknowmewell@gmail.com&hash=5b26c9ffbfed9ea89f92e5025b933548
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:40:57) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 13ms (View: 4, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:43:21) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"uknowmewell", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'uknowmewell') LIMIT 1[0m
+Rendering user_sessions/new
+Completed in 15ms (View: 4, DB: 0) | 200 OK [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:43:28) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"uknowmewell", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'uknowmewell') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=uknowmewell&email=uknowmewell@gmail.com&hash=5b26c9ffbfed9ea89f92e5025b933548
+Completed in 54ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:43:32) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:44:56) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"uknowmewell", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'uknowmewell') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=uknowmewell&email=uknowmewell@gmail.com&hash=5b26c9ffbfed9ea89f92e5025b933548
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:46:08) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:46:17) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"uknowmewell", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'uknowmewell') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '2') LIMIT 1[0m
+Redirected to http://localhost:3000/login/sso?name=uknowmewell&email=uknowmewell@gmail.com&hash=5b26c9ffbfed9ea89f92e5025b933548
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:49:59) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:50:26) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+Redirected to http://localhost:3000login/sso?name=kiran&email=kiran@freshdesk.com&hash=9599b7f97c4c8c2623c88c8566218941
+Completed in 63ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:50:40) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+Redirected to http://localhost:3000login/sso?name=kiran&email=kiran@freshdesk.com&hash=9599b7f97c4c8c2623c88c8566218941
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:50:41) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+Redirected to http://localhost:3000login/sso?name=kiran&email=kiran@freshdesk.com&hash=9599b7f97c4c8c2623c88c8566218941
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/user_sessions]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2011-06-13 08:51:09) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering user_sessions/new
+Completed in 12ms (View: 6, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2011-06-13 08:51:18) [POST]
+  Parameters: {"commit"=>"Submit", "user_session"=>{"username"=>"kiran", "password"=>"[FILTERED]"}, "action"=>"create", "authenticity_token"=>"938dvqMlZM50Q7HJhYnDR0LGSYvALZTHdiOqSJnL0Gw=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (LOWER("users".username) = 'kiran') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+Redirected to http://halflife25.freshdesk.com/login/sso?name=kiran&email=kiran@freshdesk.com&hash=882ff21789ed8024491b19f95c9fec64
+Completed in 143ms (DB: 0) | 302 Found [http://localhost/user_sessions]

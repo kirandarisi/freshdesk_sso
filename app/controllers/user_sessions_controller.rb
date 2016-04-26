@@ -20,7 +20,7 @@ class UserSessionsController < ApplicationController
   
   def gen_hash_from_params_hash(utctime)
     digest  = OpenSSL::Digest::Digest.new('MD5')
-     OpenSSL::HMAC.hexdigest(digest,AppConfig['freshdesk_sso_decret'],current_user.username+current_user.email+utctime)
+     OpenSSL::HMAC.hexdigest(digest,AppConfig['freshdesk_sso_decret'],current_user.username+AppConfig['freshdesk_sso_decret']+current_user.email+utctime)
   end
   
   def destroy
